@@ -10,3 +10,7 @@ Binaries/
 Intermediate/
 Saved/
 DerivedDataCache/
+**/.vs/
+*.ipch
+x86/
+**/out/build/
