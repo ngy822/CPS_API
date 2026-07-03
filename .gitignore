@@ -14,3 +14,13 @@ DerivedDataCache/
 *.ipch
 x86/
 **/out/build/
+# Local build, dependency, and runtime artifacts
+**/out/
+**/vcpkg_installed/
+**/logs/
+*.log
+imgui.ini
+DockingReport.csv
+measurements.csv
+tmp_*
+_tracker_head.cpp

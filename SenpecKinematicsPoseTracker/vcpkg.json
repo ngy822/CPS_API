@@ -1,0 +1,8 @@
+{
+  "name": "senpeckinematicspasetracker",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "spdlog"
+  ],
+  "builtin-baseline": "940f58770cee8e2011bfb4847fb2bd70057301a8"
+}
