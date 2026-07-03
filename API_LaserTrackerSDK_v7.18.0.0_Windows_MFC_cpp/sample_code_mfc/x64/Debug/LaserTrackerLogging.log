@@ -1,0 +1,304 @@
+[05-30-2026 21:03:06 +08:00] [info] Gimbal IP address: 192.168.0.168, Camera IP address: , model: RadianPro
+[05-30-2026 21:03:06 +08:00] [info] Connect Task assigned: Success
+[05-30-2026 21:03:06 +08:00] [info] Task assigned: Connect
+[05-30-2026 21:03:06 +08:00] [trace] task function is launched asynchronously and waiting for the result
+[05-30-2026 21:03:06 +08:00] [info] Connection is successful
+[05-30-2026 21:03:06 +08:00] [trace] Processing TckGetFWVersion
+[05-30-2026 21:03:06 +08:00] [trace] Sending command with class: 0x99, method: 0x3
+[05-30-2026 21:03:06 +08:00] [trace] Received packet: class: 0x99, method: 0x8
+[05-30-2026 21:03:06 +08:00] [trace] Sending command with class: 0x99, method: 0x4
+[05-30-2026 21:03:06 +08:00] [trace] Processing TckGetSerialNumber
+[05-30-2026 21:03:06 +08:00] [trace] Sending command with class: 0x99, method: 0x5
+[05-30-2026 21:03:06 +08:00] [trace] Processing IsDualLevelUnit
+[05-30-2026 21:03:06 +08:00] [trace] Sending command with class: 0x9a, method: 0x96
+[05-30-2026 21:03:06 +08:00] [trace] Processing TckPowerDisable
+[05-30-2026 21:03:06 +08:00] [trace] Sending command with class: 0x9a, method: 0x31
+[05-30-2026 21:03:06 +08:00] [trace] Processing TckPowerEnable
+[05-30-2026 21:03:06 +08:00] [trace] Sending command with class: 0x9a, method: 0x30
+[05-30-2026 21:03:06 +08:00] [trace] Processing SetMirrorMeasurementMode
+[05-30-2026 21:03:06 +08:00] [trace] Sending command with class: 0x96, method: 0x6
+[05-30-2026 21:03:06 +08:00] [trace] Received packet: class: 0x9a, method: 0x33
+[05-30-2026 21:03:07 +08:00] [trace] Trying to connect camera with IP address: , serial number: 60584
+[05-30-2026 21:03:07 +08:00] [trace] Attempting Multicast
+[05-30-2026 21:03:07 +08:00] [trace] Sent multicast: 12 bytes
+[05-30-2026 21:03:07 +08:00] [trace] Received: 0x1 serialnum 60584 port 5002
+[05-30-2026 21:03:07 +08:00] [trace] Multicast success. Exiting.
+[05-30-2026 21:03:07 +08:00] [trace] Multicast returned: true
+[05-30-2026 21:03:07 +08:00] [trace] Start!
+[05-30-2026 21:03:07 +08:00] [trace] Start Net Stream Writer!
+[05-30-2026 21:03:07 +08:00] [trace] Start
+[05-30-2026 21:03:07 +08:00] [trace] Start Net Stream Reader!
+[05-30-2026 21:03:07 +08:00] [trace] Returning true after init is success
+[05-30-2026 21:03:07 +08:00] [trace] Send New Command, command id = 20
+[05-30-2026 21:03:07 +08:00] [trace] Command buffer: TCPMON
+[05-30-2026 21:03:07 +08:00] [trace] Find Local IP Address.
+[05-30-2026 21:03:07 +08:00] [warning] Client attempting connection to: 192.168.0.236 port: 5002
+[05-30-2026 21:03:07 +08:00] [trace] Connection established...
+[05-30-2026 21:03:07 +08:00] [trace] Host name is DESKTOP-LOIAKEV.
+[05-30-2026 21:03:07 +08:00] [trace] socket 0x478 bound to address 192.168.0.11 and port 5002
+[05-30-2026 21:03:07 +08:00] [trace] Socket count is: 1
+[05-30-2026 21:03:08 +08:00] [trace] Send New Command, command id = 24
+[05-30-2026 21:03:08 +08:00] [trace] Command buffer: VERQRY
+[05-30-2026 21:03:08 +08:00] [trace] Send New Command, command id = 16
+[05-30-2026 21:03:08 +08:00] [trace] Command buffer: MESAGE
+[05-30-2026 21:03:08 +08:00] [trace] iVision initialization completed. Returning success
+[05-30-2026 21:03:08 +08:00] [trace] Processing SetCameraMode
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x9a, method: 0xb8
+[05-30-2026 21:03:08 +08:00] [trace] Processing StartTTLTrigger
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x9a, method: 0x8f
+[05-30-2026 21:03:08 +08:00] [trace] Processing DetectAccessory
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x9a, method: 0x73
+[05-30-2026 21:03:08 +08:00] [trace] Processing TckGetModelNumber
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x99, method: 0x2
+[05-30-2026 21:03:08 +08:00] [trace] Received packet: class: 0x99, method: 0x7
+[05-30-2026 21:03:08 +08:00] [trace] Processing TckGetModelNumber
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x99, method: 0x2
+[05-30-2026 21:03:08 +08:00] [trace] Read One packet successful, processing
+[05-30-2026 21:03:08 +08:00] [trace] New Command Header = VERQRY, Command Length: 18
+[05-30-2026 21:03:08 +08:00] [trace] Command Received, Name = VERQRY, ID = 24
+[05-30-2026 21:03:08 +08:00] [trace] Read One packet successful, processing
+[05-30-2026 21:03:08 +08:00] [trace] New Command Header = MESAGE, Command Length: 9
+[05-30-2026 21:03:08 +08:00] [trace] Command Received, Name = MESAGE, ID = 16
+[05-30-2026 21:03:08 +08:00] [trace] Read One packet successful, processing
+[05-30-2026 21:03:08 +08:00] [trace] New Command Header = MESAGE, Command Length: 9
+[05-30-2026 21:03:08 +08:00] [trace] Command Received, Name = MESAGE, ID = 16
+[05-30-2026 21:03:08 +08:00] [trace] Processing TckGetModelNumber
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x99, method: 0x2
+[05-30-2026 21:03:08 +08:00] [info] Accessory detected: None
+[05-30-2026 21:03:08 +08:00] [trace] Accessory initialization is returning with acc model: None
+[05-30-2026 21:03:08 +08:00] [trace] Processing StartRTDataTransmission
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x9a, method: 0x61
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x9a, method: 0x37
+[05-30-2026 21:03:08 +08:00] [trace] Processing SetOperationMode
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x96, method: 0x2
+[05-30-2026 21:03:08 +08:00] [trace] Processing GetWeatherStationData
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x9a, method: 0x41
+[05-30-2026 21:03:08 +08:00] [trace] Received packet: class: 0x9a, method: 0x33
+[05-30-2026 21:03:08 +08:00] [trace] Received packet: class: 0x96, method: 0x3
+[05-30-2026 21:03:08 +08:00] [trace] Received packet: class: 0x9a, method: 0x40
+[05-30-2026 21:03:08 +08:00] [trace] Processing SetLEDStatus
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x9e, method: 0x1
+[05-30-2026 21:03:08 +08:00] [trace] Processing SetLEDStatus
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x9e, method: 0x1
+[05-30-2026 21:03:08 +08:00] [trace] Processing SetLEDStatus
+[05-30-2026 21:03:08 +08:00] [trace] Sending command with class: 0x9e, method: 0x1
+[05-30-2026 21:03:08 +08:00] [trace] Received packet: class: 0x9e, method: 0x2
+[05-30-2026 21:03:08 +08:00] [trace] Received packet: class: 0x9a, method: 0x36
+[05-30-2026 21:03:09 +08:00] [trace] Processing SetOperationMode
+[05-30-2026 21:03:09 +08:00] [trace] Sending command with class: 0x96, method: 0x2
+[05-30-2026 21:03:09 +08:00] [trace] Received packet: class: 0x96, method: 0x3
+[05-30-2026 21:03:09 +08:00] [trace] Received packet: class: 0x9a, method: 0x36
+[05-30-2026 21:03:09 +08:00] [trace] Processing TckServoMoveTo
+[05-30-2026 21:03:09 +08:00] [trace] Sending command with class: 0x9a, method: 0x18
+[05-30-2026 21:03:09 +08:00] [trace] target az: 0.0, target el: -49.037
+[05-30-2026 21:03:13 +08:00] [trace] Processing GetWeatherStationData
+[05-30-2026 21:03:13 +08:00] [trace] Sending command with class: 0x9a, method: 0x41
+[05-30-2026 21:03:18 +08:00] [trace] Processing GetWeatherStationData
+[05-30-2026 21:03:18 +08:00] [trace] Sending command with class: 0x9a, method: 0x41
+[05-30-2026 21:03:20 +08:00] [info] Task call has returned with error code Success
+[05-30-2026 21:03:23 +08:00] [trace] Processing SetCameraMode
+[05-30-2026 21:03:23 +08:00] [trace] Sending command with class: 0x9a, method: 0xb8
+[05-30-2026 21:03:23 +08:00] [trace] Processing SetCameraMode
+[05-30-2026 21:03:23 +08:00] [trace] Sending command with class: 0x9a, method: 0xb8
+[05-30-2026 21:03:23 +08:00] [trace] Processing GetWeatherStationData
+[05-30-2026 21:03:23 +08:00] [trace] Sending command with class: 0x9a, method: 0x41
+[05-30-2026 21:03:24 +08:00] [trace] Returned from command rw thread. Exit Status: true
+[05-30-2026 21:03:25 +08:00] [trace] Processing StopRTDataTransmission
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x38
+[05-30-2026 21:03:25 +08:00] [trace] Processing StartTTLTrigger
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x8f
+[05-30-2026 21:03:25 +08:00] [trace] Processing SetOperationMode
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x96, method: 0x2
+[05-30-2026 21:03:25 +08:00] [trace] Processing TckPowerDisable
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x31
+[05-30-2026 21:03:25 +08:00] [trace] Processing SetStsLedStatus
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9e, method: 0x3
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x8
+[05-30-2026 21:03:25 +08:00] [info] Task assigned: Idle
+[05-30-2026 21:03:25 +08:00] [trace] Thread exited
+[05-30-2026 21:03:25 +08:00] [info] Disconnected: Success
+[05-30-2026 21:03:25 +08:00] [trace] Processing SetCameraMode
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0xb8
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [error] Returned error: CommunicationFailed
+[05-30-2026 21:03:25 +08:00] [trace] Processing StopRTDataTransmission
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x38
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [trace] Processing StartTTLTrigger
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x8f
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [trace] Processing SetOperationMode
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x96, method: 0x2
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [trace] Processing TckPowerDisable
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x31
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x8
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [info] Disconnected: Success
+[05-30-2026 21:03:25 +08:00] [trace] Processing SetCameraMode
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0xb8
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [error] Returned error: CommunicationFailed
+[05-30-2026 21:03:25 +08:00] [trace] Processing StopRTDataTransmission
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x38
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [trace] Processing StartTTLTrigger
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x8f
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [trace] Processing SetOperationMode
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x96, method: 0x2
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [trace] Processing TckPowerDisable
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x31
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x8
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:25 +08:00] [trace] measurement mode set is idle
+[05-30-2026 21:03:25 +08:00] [trace] Sending command with class: 0x9a, method: 0x8
+[05-30-2026 21:03:25 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:27 +08:00] [info] Gimbal IP address: 192.168.0.168, Camera IP address: , model: RadianPro
+[05-30-2026 21:03:27 +08:00] [info] Connect Task assigned: Success
+[05-30-2026 21:03:27 +08:00] [info] Task assigned: Connect
+[05-30-2026 21:03:27 +08:00] [trace] task function is launched asynchronously and waiting for the result
+[05-30-2026 21:03:27 +08:00] [info] Connection is successful
+[05-30-2026 21:03:27 +08:00] [trace] Processing TckGetFWVersion
+[05-30-2026 21:03:27 +08:00] [trace] Sending command with class: 0x99, method: 0x3
+[05-30-2026 21:03:27 +08:00] [trace] Received packet: class: 0x99, method: 0x8
+[05-30-2026 21:03:27 +08:00] [trace] Sending command with class: 0x99, method: 0x4
+[05-30-2026 21:03:27 +08:00] [trace] Processing TckGetSerialNumber
+[05-30-2026 21:03:27 +08:00] [trace] Sending command with class: 0x99, method: 0x5
+[05-30-2026 21:03:27 +08:00] [trace] Processing IsDualLevelUnit
+[05-30-2026 21:03:27 +08:00] [trace] Sending command with class: 0x9a, method: 0x96
+[05-30-2026 21:03:27 +08:00] [trace] Processing TckPowerDisable
+[05-30-2026 21:03:27 +08:00] [trace] Sending command with class: 0x9a, method: 0x31
+[05-30-2026 21:03:27 +08:00] [trace] Processing TckPowerEnable
+[05-30-2026 21:03:27 +08:00] [trace] Sending command with class: 0x9a, method: 0x30
+[05-30-2026 21:03:27 +08:00] [trace] Processing SetMirrorMeasurementMode
+[05-30-2026 21:03:27 +08:00] [trace] Sending command with class: 0x96, method: 0x6
+[05-30-2026 21:03:27 +08:00] [trace] Received packet: class: 0x9a, method: 0x33
+[05-30-2026 21:03:29 +08:00] [trace] Trying to connect camera with IP address: , serial number: 60584
+[05-30-2026 21:03:29 +08:00] [trace] Attempting Multicast
+[05-30-2026 21:03:29 +08:00] [trace] Sent multicast: 12 bytes
+[05-30-2026 21:03:29 +08:00] [trace] Received: 0x1 serialnum 60584 port 5002
+[05-30-2026 21:03:29 +08:00] [trace] Multicast success. Exiting.
+[05-30-2026 21:03:29 +08:00] [trace] Multicast returned: true
+[05-30-2026 21:03:29 +08:00] [trace] Start!
+[05-30-2026 21:03:29 +08:00] [trace] Start Net Stream Writer!
+[05-30-2026 21:03:29 +08:00] [trace] Start
+[05-30-2026 21:03:29 +08:00] [trace] Start Net Stream Reader!
+[05-30-2026 21:03:29 +08:00] [trace] Returning true after init is success
+[05-30-2026 21:03:29 +08:00] [trace] Send New Command, command id = 20
+[05-30-2026 21:03:29 +08:00] [trace] Command buffer: TCPMON
+[05-30-2026 21:03:29 +08:00] [trace] Find Local IP Address.
+[05-30-2026 21:03:29 +08:00] [trace] Host name is DESKTOP-LOIAKEV.
+[05-30-2026 21:03:29 +08:00] [trace] socket 0x478 bound to address 192.168.0.11 and port 5002
+[05-30-2026 21:03:29 +08:00] [trace] Socket count is: 1
+[05-30-2026 21:03:29 +08:00] [trace] Send New Command, command id = 24
+[05-30-2026 21:03:29 +08:00] [trace] Command buffer: VERQRY
+[05-30-2026 21:03:29 +08:00] [trace] Send New Command, command id = 16
+[05-30-2026 21:03:29 +08:00] [trace] Command buffer: MESAGE
+[05-30-2026 21:03:29 +08:00] [trace] iVision initialization completed. Returning success
+[05-30-2026 21:03:29 +08:00] [trace] Processing SetCameraMode
+[05-30-2026 21:03:29 +08:00] [trace] Sending command with class: 0x9a, method: 0xb8
+[05-30-2026 21:03:29 +08:00] [trace] Processing StartTTLTrigger
+[05-30-2026 21:03:29 +08:00] [trace] Sending command with class: 0x9a, method: 0x8f
+[05-30-2026 21:03:29 +08:00] [trace] Processing DetectAccessory
+[05-30-2026 21:03:29 +08:00] [trace] Sending command with class: 0x9a, method: 0x73
+[05-30-2026 21:03:29 +08:00] [trace] Processing TckGetModelNumber
+[05-30-2026 21:03:29 +08:00] [trace] Sending command with class: 0x99, method: 0x2
+[05-30-2026 21:03:29 +08:00] [trace] Received packet: class: 0x99, method: 0x7
+[05-30-2026 21:03:30 +08:00] [trace] Processing TckGetModelNumber
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x99, method: 0x2
+[05-30-2026 21:03:30 +08:00] [trace] Processing TckGetModelNumber
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x99, method: 0x2
+[05-30-2026 21:03:30 +08:00] [info] Accessory detected: None
+[05-30-2026 21:03:30 +08:00] [trace] Accessory initialization is returning with acc model: None
+[05-30-2026 21:03:30 +08:00] [trace] Processing StartRTDataTransmission
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x9a, method: 0x61
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x9a, method: 0x37
+[05-30-2026 21:03:30 +08:00] [trace] Processing SetOperationMode
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x96, method: 0x2
+[05-30-2026 21:03:30 +08:00] [trace] Processing GetWeatherStationData
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x9a, method: 0x41
+[05-30-2026 21:03:30 +08:00] [trace] Received packet: class: 0x9a, method: 0x33
+[05-30-2026 21:03:30 +08:00] [trace] Received packet: class: 0x96, method: 0x3
+[05-30-2026 21:03:30 +08:00] [trace] Received packet: class: 0x9a, method: 0x40
+[05-30-2026 21:03:30 +08:00] [trace] Processing SetLEDStatus
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x9e, method: 0x1
+[05-30-2026 21:03:30 +08:00] [trace] Processing SetLEDStatus
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x9e, method: 0x1
+[05-30-2026 21:03:30 +08:00] [trace] Processing SetLEDStatus
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x9e, method: 0x1
+[05-30-2026 21:03:30 +08:00] [trace] Processing SetOperationMode
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x96, method: 0x2
+[05-30-2026 21:03:30 +08:00] [trace] Received packet: class: 0x9e, method: 0x2
+[05-30-2026 21:03:30 +08:00] [trace] Received packet: class: 0x96, method: 0x3
+[05-30-2026 21:03:30 +08:00] [trace] Received packet: class: 0x9a, method: 0x36
+[05-30-2026 21:03:30 +08:00] [trace] Processing TckServoMoveTo
+[05-30-2026 21:03:30 +08:00] [trace] Sending command with class: 0x9a, method: 0x18
+[05-30-2026 21:03:30 +08:00] [trace] target az: 0.0, target el: -49.037
+[05-30-2026 21:03:35 +08:00] [trace] Processing GetWeatherStationData
+[05-30-2026 21:03:35 +08:00] [trace] Sending command with class: 0x9a, method: 0x41
+[05-30-2026 21:03:40 +08:00] [trace] Processing GetWeatherStationData
+[05-30-2026 21:03:40 +08:00] [trace] Sending command with class: 0x9a, method: 0x41
+[05-30-2026 21:03:40 +08:00] [info] Task call has returned with error code Success
+[05-30-2026 21:03:40 +08:00] [trace] Processing SetCameraMode
+[05-30-2026 21:03:40 +08:00] [trace] Sending command with class: 0x9a, method: 0xb8
+[05-30-2026 21:03:40 +08:00] [trace] Processing SetCameraMode
+[05-30-2026 21:03:40 +08:00] [trace] Sending command with class: 0x9a, method: 0xb8
+[05-30-2026 21:03:41 +08:00] [trace] Returned from command rw thread. Exit Status: true
+[05-30-2026 21:03:41 +08:00] [trace] Processing StopRTDataTransmission
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x38
+[05-30-2026 21:03:41 +08:00] [trace] Processing StartTTLTrigger
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x8f
+[05-30-2026 21:03:41 +08:00] [trace] Processing SetOperationMode
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x96, method: 0x2
+[05-30-2026 21:03:41 +08:00] [trace] Processing TckPowerDisable
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x31
+[05-30-2026 21:03:41 +08:00] [trace] Processing SetStsLedStatus
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9e, method: 0x3
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x8
+[05-30-2026 21:03:41 +08:00] [info] Task assigned: Idle
+[05-30-2026 21:03:41 +08:00] [trace] Thread exited
+[05-30-2026 21:03:41 +08:00] [info] Disconnected: Success
+[05-30-2026 21:03:41 +08:00] [trace] Processing SetCameraMode
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0xb8
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [error] Returned error: CommunicationFailed
+[05-30-2026 21:03:41 +08:00] [trace] Processing StopRTDataTransmission
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x38
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [trace] Processing StartTTLTrigger
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x8f
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [trace] Processing SetOperationMode
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x96, method: 0x2
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [trace] Processing TckPowerDisable
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x31
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x8
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [info] Disconnected: Success
+[05-30-2026 21:03:41 +08:00] [trace] Processing SetCameraMode
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0xb8
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [error] Returned error: CommunicationFailed
+[05-30-2026 21:03:41 +08:00] [trace] Processing StopRTDataTransmission
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x38
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [trace] Processing StartTTLTrigger
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x8f
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [trace] Processing SetOperationMode
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x96, method: 0x2
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [trace] Processing TckPowerDisable
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x31
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x8
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
+[05-30-2026 21:03:41 +08:00] [trace] measurement mode set is idle
+[05-30-2026 21:03:41 +08:00] [trace] Sending command with class: 0x9a, method: 0x8
+[05-30-2026 21:03:41 +08:00] [error] Error in sending the command
