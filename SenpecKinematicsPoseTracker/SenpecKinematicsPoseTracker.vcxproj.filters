@@ -76,6 +76,12 @@
     <ClInclude Include="include\core\DigitalTwinPublisher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="thirdparty\CPSAPI\include\CPSAPI\CPSAPI.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\CPSAPI\include\CPSAPI\CPSDef.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
     <ClInclude Include="include\ui\UiLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -121,5 +127,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="vcpkg.json" />
+    <None Include="thirdparty\CPSAPI\lib\cpsapi.lib" />
+    <None Include="thirdparty\CPSAPI\bin\cpsapi.dll" />
+    <None Include="thirdparty\CPSAPI\bin\libbus.dll" />
   </ItemGroup>
 </Project>

@@ -1539,8 +1539,6 @@ namespace senpec
         record.timestamp = std::chrono::system_clock::now();
 
         store_.AddRecord(record);
-        publisher_.Publish(record);
-        OperationLogger::Instance().Log(LogLevel::Debug, "测量结果已发布到数字孪生。 index=" + std::to_string(record.index));
 
         std::ostringstream stream;
         stream << (isSimulationMode_ ? u8"【模拟测量】" : u8"硬件测量")
@@ -1621,6 +1619,22 @@ namespace senpec
         }
 
         hasSimulatedKinematicsResult_ = true;
+
+        const bool poseAccepted = publisher_.PublishPosePair(
+            simulatedKinematicsResult_.currentPoseVector,
+            simulatedKinematicsResult_.targetPoseVector);
+
+        if (poseAccepted)
+        {
+            AppendRuntimeLog(
+                publisher_.IsConnected()
+                ? u8"当前位姿与目标位姿已提交 CPS 总线，并将按 50 ms 周期持续发送。"
+                : u8"当前位姿与目标位姿已缓存；CPS 总线连接后将自动持续发送。");
+        }
+        else
+        {
+            AppendRuntimeLog(u8"CPS 位姿发布失败：数据包含无效数值或发布器未初始化。");
+        }
 
         std::ostringstream stream;
         stream << u8"【算法核心】完成第 " << currentRoundIndex_ << u8" 轮对接计算！";

@@ -62,13 +62,13 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)resources;$(ProjectDir)thirdparty\Eigen;$(ProjectDir)include;$(ProjectDir)..\API_LaserTrackerSDK_v7.18.0.0_Windows_MFC_cpp\include;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\backends;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\misc\cpp;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\examples\libs\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)resources;$(ProjectDir)thirdparty\Eigen;$(ProjectDir)thirdparty\CPSAPI\include;$(ProjectDir)include;$(ProjectDir)..\API_LaserTrackerSDK_v7.18.0.0_Windows_MFC_cpp\include;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\backends;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\misc\cpp;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\examples\libs\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\API_LaserTrackerSDK_v7.18.0.0_Windows_MFC_cpp\lib;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\examples\libs\glfw\lib-vc2010-64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libltinterface.lib;glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;winmm.lib;imm32.lib;ole32.lib;oleaut32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)thirdparty\CPSAPI\lib;$(ProjectDir)..\API_LaserTrackerSDK_v7.18.0.0_Windows_MFC_cpp\lib;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\examples\libs\glfw\lib-vc2010-64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cpsapi.lib;libltinterface.lib;glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;winmm.lib;imm32.lib;ole32.lib;oleaut32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -80,14 +80,14 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)resources;$(ProjectDir)thirdparty\Eigen;$(ProjectDir)include;$(ProjectDir)..\API_LaserTrackerSDK_v7.18.0.0_Windows_MFC_cpp\include;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\backends;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\misc\cpp;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\examples\libs\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)resources;$(ProjectDir)thirdparty\Eigen;$(ProjectDir)thirdparty\CPSAPI\include;$(ProjectDir)include;$(ProjectDir)..\API_LaserTrackerSDK_v7.18.0.0_Windows_MFC_cpp\include;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\backends;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\misc\cpp;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\examples\libs\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <Optimization>MaxSpeed</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\API_LaserTrackerSDK_v7.18.0.0_Windows_MFC_cpp\lib;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\examples\libs\glfw\lib-vc2010-64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libltinterface.lib;glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;winmm.lib;imm32.lib;ole32.lib;oleaut32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)thirdparty\CPSAPI\lib;$(ProjectDir)..\API_LaserTrackerSDK_v7.18.0.0_Windows_MFC_cpp\lib;$(SolutionDir)..\imgui-1.92.7\imgui-1.92.7\examples\libs\glfw\lib-vc2010-64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cpsapi.lib;libltinterface.lib;glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;winmm.lib;imm32.lib;ole32.lib;oleaut32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -114,6 +114,8 @@
     <ClInclude Include="include\core\MeasurementStore.h" />
     <ClInclude Include="include\core\OperationLogger.h" />
     <ClInclude Include="include\core\DigitalTwinPublisher.h" />
+    <ClInclude Include="thirdparty\CPSAPI\include\CPSAPI\CPSAPI.h" />
+    <ClInclude Include="thirdparty\CPSAPI\include\CPSAPI\CPSDef.h" />
     <ClInclude Include="include\ui\UiLayer.h" />
     <ClInclude Include="..\imgui-1.92.7\imgui-1.92.7\imgui.h" />
     <ClInclude Include="..\imgui-1.92.7\imgui-1.92.7\backends\imgui_impl_glfw.h" />
@@ -130,7 +132,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="vcpkg.json" />
+    <None Include="thirdparty\CPSAPI\lib\cpsapi.lib" />
+    <None Include="thirdparty\CPSAPI\bin\cpsapi.dll" />
+    <None Include="thirdparty\CPSAPI\bin\libbus.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
+  <Target Name="CopyCpsRuntime" AfterTargets="Build">
+    <ItemGroup>
+      <CpsRuntimeDll Include="$(ProjectDir)thirdparty\CPSAPI\bin\cpsapi.dll" />
+      <CpsRuntimeDll Include="$(ProjectDir)thirdparty\CPSAPI\bin\libbus.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(CpsRuntimeDll)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+  </Target>
 </Project>
