@@ -1621,15 +1621,17 @@ namespace senpec
         hasSimulatedKinematicsResult_ = true;
 
         const bool poseAccepted = publisher_.PublishPosePair(
+            simulatedKinematicsResult_.currentPoseMatrix,
             simulatedKinematicsResult_.currentPoseVector,
+            simulatedKinematicsResult_.targetPoseMatrix,
             simulatedKinematicsResult_.targetPoseVector);
 
         if (poseAccepted)
         {
             AppendRuntimeLog(
                 publisher_.IsConnected()
-                ? u8"当前位姿与目标位姿已提交 CPS 总线，并将按 50 ms 周期持续发送。"
-                : u8"当前位姿与目标位姿已缓存；CPS 总线连接后将自动持续发送。");
+                ? u8"当前/目标位姿矩阵及 3平3转分量已提交 CPS 总线，并将按 50 ms 周期持续发送。"
+                : u8"当前/目标位姿矩阵及 3平3转分量已缓存；CPS 总线连接后将自动持续发送。");
         }
         else
         {

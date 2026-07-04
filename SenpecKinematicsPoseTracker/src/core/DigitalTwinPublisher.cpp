@@ -29,6 +29,11 @@ namespace senpec
         constexpr int kLogServerPort = 8888;
         constexpr std::chrono::milliseconds kPublishInterval{ 50 };
 
+        static_assert(sizeof(ST_POSE) == sizeof(double) * 6, "Unexpected ST_POSE layout");
+        static_assert(
+            sizeof(ST_MATRIX4X4) == sizeof(double) * 16,
+            "Unexpected ST_MATRIX4X4 layout");
+
         std::string ReadFixedString(const char* text, std::size_t capacity)
         {
             if (!text || capacity == 0)
@@ -234,25 +239,31 @@ namespace senpec
         }
 
         bool PublishPosePair(
+            const DigitalTwinPublisher::PoseMatrix& currentMatrix,
             const DigitalTwinPublisher::PoseVector& currentPose,
+            const DigitalTwinPublisher::PoseMatrix& targetMatrix,
             const DigitalTwinPublisher::PoseVector& targetPose)
         {
             const auto isFinite = [](double value) {
                 return std::isfinite(value);
                 };
 
-            if (!std::all_of(currentPose.begin(), currentPose.end(), isFinite) ||
+            if (!std::all_of(currentMatrix.begin(), currentMatrix.end(), isFinite) ||
+                !std::all_of(currentPose.begin(), currentPose.end(), isFinite) ||
+                !std::all_of(targetMatrix.begin(), targetMatrix.end(), isFinite) ||
                 !std::all_of(targetPose.begin(), targetPose.end(), isFinite))
             {
                 OperationLogger::Instance().Log(
                     LogLevel::Error,
-                    u8"CPS 位姿发布被拒绝：当前位姿或目标位姿包含 NaN/Inf。");
+                    u8"CPS 位姿发布被拒绝：当前/目标矩阵或 3平3转分量包含 NaN/Inf。");
                 return false;
             }
 
             {
                 std::lock_guard<std::mutex> lock(poseMutex_);
+                currentMatrix_ = currentMatrix;
                 currentPose_ = currentPose;
+                targetMatrix_ = targetMatrix;
                 targetPose_ = targetPose;
                 hasPose_ = true;
                 ++poseVersion_;
@@ -261,7 +272,7 @@ namespace senpec
             wakeup_.notify_all();
 
             std::ostringstream stream;
-            stream << "CPS 位姿已更新: current=["
+            stream << "CPS 位姿矩阵及分量已更新: current=["
                 << currentPose[0] << ", " << currentPose[1] << ", " << currentPose[2] << ", "
                 << currentPose[3] << ", " << currentPose[4] << ", " << currentPose[5] << "]"
                 << ", target=["
@@ -282,10 +293,14 @@ namespace senpec
             std::uint64_t lastDeliveredVersion = 0;
             int previousCurrentError = 0;
             int previousTargetError = 0;
+            int previousCurrentMatrixError = 0;
+            int previousTargetMatrixError = 0;
 
             while (running_.load())
             {
+                DigitalTwinPublisher::PoseMatrix currentMatrix{};
                 DigitalTwinPublisher::PoseVector currentPose{};
+                DigitalTwinPublisher::PoseMatrix targetMatrix{};
                 DigitalTwinPublisher::PoseVector targetPose{};
                 std::uint64_t version = 0;
                 bool hasPose = false;
@@ -301,7 +316,9 @@ namespace senpec
                     hasPose = hasPose_;
                     if (hasPose)
                     {
+                        currentMatrix = currentMatrix_;
                         currentPose = currentPose_;
+                        targetMatrix = targetMatrix_;
                         targetPose = targetPose_;
                         version = poseVersion_;
                     }
@@ -314,8 +331,18 @@ namespace senpec
 
                 ST_POSE currentMessage{};
                 ST_POSE targetMessage{};
+                ST_MATRIX4X4 currentMatrixMessage{};
+                ST_MATRIX4X4 targetMatrixMessage{};
                 std::copy(currentPose.begin(), currentPose.end(), currentMessage.pose);
                 std::copy(targetPose.begin(), targetPose.end(), targetMessage.pose);
+                std::copy(
+                    currentMatrix.begin(),
+                    currentMatrix.end(),
+                    currentMatrixMessage.matrix);
+                std::copy(
+                    targetMatrix.begin(),
+                    targetMatrix.end(),
+                    targetMatrixMessage.matrix);
 
                 const int currentResult = api_->SendAPPMsg(
                     CPS_DT_DEVICE_ID,
@@ -329,33 +356,58 @@ namespace senpec
                     reinterpret_cast<const char*>(&targetMessage),
                     sizeof(targetMessage));
 
-                if (currentResult == 0 && targetResult == 0)
+                const int currentMatrixResult = api_->SendAPPMsg(
+                    CPS_DT_DEVICE_ID,
+                    MSG_CURRENT_POSE_MATRIX,
+                    reinterpret_cast<const char*>(&currentMatrixMessage),
+                    sizeof(currentMatrixMessage));
+
+                const int targetMatrixResult = api_->SendAPPMsg(
+                    CPS_DT_DEVICE_ID,
+                    MSG_TARGET_POSE_MATRIX,
+                    reinterpret_cast<const char*>(&targetMatrixMessage),
+                    sizeof(targetMatrixMessage));
+
+                if (currentResult == 0 &&
+                    targetResult == 0 &&
+                    currentMatrixResult == 0 &&
+                    targetMatrixResult == 0)
                 {
                     if (lastDeliveredVersion != version)
                     {
                         OperationLogger::Instance().Log(
                             LogLevel::Info,
-                            u8"CPS 当前位姿(0x509)与目标位姿(0x50A)已开始按 50 ms 周期发布。");
+                            u8"CPS 当前分量(0x509)、目标分量(0x50A)、当前矩阵(0x50B)、目标矩阵(0x50C)已开始按 50 ms 周期发布。");
                         lastDeliveredVersion = version;
                     }
 
-                    if (previousCurrentError != 0 || previousTargetError != 0)
+                    if (previousCurrentError != 0 ||
+                        previousTargetError != 0 ||
+                        previousCurrentMatrixError != 0 ||
+                        previousTargetMatrixError != 0)
                     {
                         OperationLogger::Instance().Log(
                             LogLevel::Info,
                             u8"CPS 位姿发送已恢复正常。");
                     }
                 }
-                else if (currentResult != previousCurrentError || targetResult != previousTargetError)
+                else if (currentResult != previousCurrentError ||
+                    targetResult != previousTargetError ||
+                    currentMatrixResult != previousCurrentMatrixError ||
+                    targetMatrixResult != previousTargetMatrixError)
                 {
                     OperationLogger::Instance().Log(
                         LogLevel::Error,
-                        u8"CPS 位姿发送失败：当前位姿错误码=" + std::to_string(currentResult) +
-                        u8"，目标位姿错误码=" + std::to_string(targetResult));
+                        u8"CPS 位姿发送失败：当前分量=" + std::to_string(currentResult) +
+                        u8"，目标分量=" + std::to_string(targetResult) +
+                        u8"，当前矩阵=" + std::to_string(currentMatrixResult) +
+                        u8"，目标矩阵=" + std::to_string(targetMatrixResult));
                 }
 
                 previousCurrentError = currentResult;
                 previousTargetError = targetResult;
+                previousCurrentMatrixError = currentMatrixResult;
+                previousTargetMatrixError = targetMatrixResult;
             }
         }
 
@@ -368,7 +420,9 @@ namespace senpec
 
         mutable std::mutex poseMutex_;
         std::condition_variable wakeup_;
+        DigitalTwinPublisher::PoseMatrix currentMatrix_{};
         DigitalTwinPublisher::PoseVector currentPose_{};
+        DigitalTwinPublisher::PoseMatrix targetMatrix_{};
         DigitalTwinPublisher::PoseVector targetPose_{};
         bool hasPose_{ false };
         std::uint64_t poseVersion_{ 0 };
@@ -384,10 +438,13 @@ namespace senpec
     DigitalTwinPublisher::~DigitalTwinPublisher() = default;
 
     bool DigitalTwinPublisher::PublishPosePair(
+        const PoseMatrix& currentMatrix,
         const PoseVector& currentPose,
+        const PoseMatrix& targetMatrix,
         const PoseVector& targetPose)
     {
-        return impl_ && impl_->PublishPosePair(currentPose, targetPose);
+        return impl_ &&
+            impl_->PublishPosePair(currentMatrix, currentPose, targetMatrix, targetPose);
     }
 
     bool DigitalTwinPublisher::IsConnected() const noexcept

@@ -82,5 +82,14 @@ typedef struct
 // pose = [X, Y, Z, Rx, Ry, Rz]
 #define MSG_TARGET_POSE			0x50A
 
+// 当前/目标 4x4 位姿矩阵，按行主序排列：
+// [m00, m01, m02, m03, m10, ..., m33]
+#define MSG_CURRENT_POSE_MATRIX	0x50B
+#define MSG_TARGET_POSE_MATRIX	0x50C
+typedef struct
+{
+	double matrix[16];
+}ST_MATRIX4X4;
+
 #pragma pack(pop)
 
