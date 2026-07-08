@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MATLAB 空间对接与 4-PR 并联调姿模型分析报告</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #5f6b7a;
+      --line: #d9e0ea;
+      --paper: #f7f9fc;
+      --white: #ffffff;
+      --blue: #2367c9;
+      --teal: #058f8c;
+      --amber: #b7791f;
+      --red: #c2413d;
+      --green: #267a4a;
+      --code: #101828;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font: 15px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+    }
+
+    main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    header {
+      padding: 28px 0 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 8px 0 10px;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 34px 0 12px;
+      padding-top: 6px;
+      color: #111827;
+      font-size: 22px;
+      line-height: 1.3;
+      border-top: 1px solid var(--line);
+    }
+
+    h3 {
+      margin: 24px 0 8px;
+      font-size: 17px;
+      color: #1f2937;
+    }
+
+    p { margin: 8px 0 12px; }
+
+    code {
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: #edf2f7;
+      color: var(--code);
+      font-family: Consolas, "SFMono-Regular", Menlo, monospace;
+      font-size: 0.94em;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 12px 0;
+      padding: 14px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #0f172a;
+      color: #e5eefb;
+      font-family: Consolas, "SFMono-Regular", Menlo, monospace;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef3f8;
+      font-weight: 700;
+      color: #243247;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    ul { margin: 8px 0 14px 21px; padding: 0; }
+    li { margin: 5px 0; }
+
+    .lead {
+      max-width: 920px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .kicker {
+      margin: 0;
+      color: var(--blue);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: 12px;
+    }
+
+    .meta, .note {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 15px 16px;
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      color: #293548;
+      font-size: 13px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(120px, 1fr));
+      gap: 10px;
+      margin: 16px 0 20px;
+    }
+
+    .step {
+      position: relative;
+      min-height: 92px;
+      padding: 13px 12px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      background: var(--white);
+    }
+
+    .step b {
+      display: block;
+      margin-bottom: 5px;
+      color: #0f172a;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .step::after {
+      content: "→";
+      position: absolute;
+      right: -12px;
+      top: 32px;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .step:last-child::after { display: none; }
+
+    .callout {
+      margin: 14px 0 18px;
+      padding: 13px 15px;
+      border-left: 4px solid var(--teal);
+      background: #eefdfb;
+      border-radius: 6px;
+    }
+
+    .warn {
+      border-left-color: var(--amber);
+      background: #fff8e8;
+    }
+
+    .risk {
+      border-left-color: var(--red);
+      background: #fff1f1;
+    }
+
+    .ok {
+      border-left-color: var(--green);
+      background: #effaf3;
+    }
+
+    .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .small { font-size: 13px; color: var(--muted); }
+
+    details {
+      margin: 12px 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 11px 13px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    details > div {
+      padding: 0 13px 13px;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr; }
+      .step::after { display: none; }
+      h1 { font-size: 27px; }
+      main { padding: 20px 14px 42px; }
+      table { font-size: 13px; }
+      th, td { padding: 8px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="kicker">源代码分析报告</p>
+    <h1>MATLAB 空间对接与 4-PR 并联调姿模型分析</h1>
+    <p class="lead">
+      分析对象为 <code>G:\CPS_API\matlab程序</code> 下的两份 MATLAB 脚本和一个当前测量数据文件。
+      这套程序的核心思想是：先用激光跟踪仪靶标点恢复各工装端面的空间坐标系，再把测量场映射到设备理论基准场，最后把对接目标分解为地轨平移、4 条顶升支链高度和固定段滚转补偿指令。
+    </p>
+    <p class="meta">生成日期：2026-07-07。当前 <code>laser_tracker_data.mat</code> 在 Git 工作树中处于已修改状态；本文数值结果基于当前文件内容复算。</p>
+    <div class="badge-row">
+      <span class="badge">单位：mm / degree</span>
+      <span class="badge">靶标数：18 个</span>
+      <span class="badge">当前模式：align_mode = 3</span>
+      <span class="badge">数据噪声：noise_level = 0</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>一、总体结论</h2>
+    <div class="grid">
+      <div class="card">
+        <strong>程序用途</strong>
+        <p>它不是单纯画图脚本，而是一个“测量点生成 + 靶标坐标系拟合 + 设备基准映射 + 对接逆解”的完整原型。</p>
+      </div>
+      <div class="card">
+        <strong>数学主线</strong>
+        <p>全部建模建立在齐次变换矩阵、三点定坐标系、三点定圆心、轴线投影正交化、圆柱接触几何求根这些基础上。</p>
+      </div>
+      <div class="card">
+        <strong>当前求解结果</strong>
+        <p>人工调整模式下，地轨 Y 向平移约 <span class="num">+197.006 mm</span>；4 条支链目标高度为 <span class="num">1494.306 / 1499.283 / 1706.188 / 1610.398 mm</span>。</p>
+      </div>
+    </div>
+
+    <div class="flow">
+      <div class="step"><b>1. 生成靶标</b><span>按世界、基座、固定段、移动段四类点构造 18 个点。</span></div>
+      <div class="step"><b>2. 读取测点</b><span>从 <code>laser_tracker_data.mat</code> 读取 <code>Targets</code>。</span></div>
+      <div class="step"><b>3. 拟合坐标系</b><span>由靶标点恢复 W、F、M0 的位姿。</span></div>
+      <div class="step"><b>4. 空间映射</b><span>把激光跟踪仪测量场转到设备理论场。</span></div>
+      <div class="step"><b>5. 对接策略</b><span>选择完全重合、姿态平行或人工 6-DOF 调整。</span></div>
+      <div class="step"><b>6. IK 分解</b><span>输出固定段 Roll、移动段 Y 平移和 4 支链高度。</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>二、文件与入口</h2>
+    <table>
+      <thead>
+        <tr><th>文件</th><th>角色</th><th>关键位置</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>gen_markerdata_V3.m</code></td>
+          <td>模拟数据生成器</td>
+          <td>参数 5-12 行；变换 14-52 行；靶标 55-81 行；保存 83-105 行</td>
+          <td>生成 18 个靶标点，保存为 <code>laser_tracker_data.mat</code>，并导出 <code>measurements.csv</code>。</td>
+        </tr>
+        <tr>
+          <td><code>simulation_mapping_ik_v1.m</code></td>
+          <td>主求解与可视化脚本</td>
+          <td>读取 21-24 行；拟合 26-55 行；映射 57-69 行；策略 71-96 行；IK 98-122 行</td>
+          <td>从靶标点反推工件位姿，再生成对接目标和运动控制量，并画出 3D 数字孪生场景。</td>
+        </tr>
+        <tr>
+          <td><code>laser_tracker_data.mat</code></td>
+          <td>当前测量数据</td>
+          <td>变量 <code>Targets</code>，尺寸 <code>18 x 3</code></td>
+          <td>当前文件与 Git 中版本不同；本文复算使用当前磁盘上的数据。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">
+      <strong>运行目录很重要。</strong>
+      两个脚本都使用相对路径读写 <code>laser_tracker_data.mat</code>。建议先在 MATLAB 中执行 <code>cd('G:\CPS_API\matlab程序')</code>，再运行 <code>gen_markerdata_V3</code> 或 <code>simulation_mapping_ik_v1</code>。
+    </div>
+  </section>
+
+  <section>
+    <h2>三、机构参数与坐标系建模</h2>
+    <table>
+      <thead>
+        <tr><th>参数</th><th>数值</th><th>物理含义</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>Rw</code></td><td class="num">1753 mm</td><td>工件大圆柱半径。</td></tr>
+        <tr><td><code>Lw</code></td><td class="num">9580 mm</td><td>移动段工件长度。</td></tr>
+        <tr><td><code>L_fixed</code></td><td class="num">4000 mm</td><td>固定段工件长度，仅在主脚本可视化中使用。</td></tr>
+        <tr><td><code>Xc</code></td><td class="num">1355 mm</td><td>支链横向半跨距。</td></tr>
+        <tr><td><code>Yc</code></td><td class="num">2250 mm</td><td>支链纵向半跨距。</td></tr>
+        <tr><td><code>Hc</code></td><td class="num">1500 mm</td><td>顶升柱初始高度。</td></tr>
+        <tr><td><code>rr</code></td><td class="num">425 mm</td><td>滚筒半径。</td></tr>
+        <tr><td><code>Zw</code></td><td class="num">3205.186 mm</td><td>由 <code>Hc + sqrt((Rw + rr)^2 - Xc^2)</code> 得到的理论圆柱轴线高度。</td></tr>
+      </tbody>
+    </table>
+
+    <h3>齐次变换约定</h3>
+    <p>脚本使用列向量点坐标和 4x4 齐次矩阵：</p>
+    <pre>T = [ R  p ]
+    [ 0  1 ]
+
+p_global = R * p_local + p
+[p_global; 1] = T * [p_local; 1]</pre>
+
+    <p>
+      <code>gen_markerdata_V3.m</code> 中的 <code>T_M0_base * Delta_M0</code>、<code>T_F_base * Delta_F</code> 用来模拟实际安装或停放误差。
+      <code>simulation_mapping_ik_v1.m</code> 中的 <code>T_M0 * T_manual</code> 则表示人工调整量作用在移动段当前局部坐标系下，这是理解 <code>man_dx/man_dy/man_dz</code> 的关键。
+    </p>
+
+    <h3>坐标系含义</h3>
+    <table>
+      <thead>
+        <tr><th>坐标系</th><th>来源</th><th>用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>{W}</code></td><td>P1-P3 三个世界系靶标</td><td>定义设备理论基准场中的世界框架，理想原点位于 <code>Y = Lw/2</code>。</td></tr>
+        <tr><td><code>{B}</code></td><td>P4-P6 三个基座点</td><td>生成器中用于辅助标定地基/基座关系，主求解脚本目前没有直接使用 B 的拟合结果。</td></tr>
+        <tr><td><code>{F}</code></td><td>P7-P12 两组固定段截面圆周点</td><td>拟合固定段目标端面位姿，作为对接目标或姿态参照。</td></tr>
+        <tr><td><code>{M0}</code></td><td>P13-P18 两组移动段截面圆周点</td><td>拟合移动段当前端面位姿，作为逆解初始状态。</td></tr>
+        <tr><td><code>{Mnew}</code></td><td>由策略生成</td><td>移动段需要到达的目标位姿，用于 IK 分解。</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>四、靶标点设计与数据生成</h2>
+    <p>
+      <code>gen_markerdata_V3.m</code> 的作用是构造一套可验证算法的“激光跟踪仪靶标点云”。它先定义理论几何尺寸，再人为注入移动段和固定段的 6-DOF 微调误差，最后把各局部坐标系中的靶标点转换到全局测量坐标中。
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>点号</th><th>归属</th><th>生成方式</th><th>算法用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>P1-P3</td><td>世界系 <code>{W}</code></td><td>三点定义原点、Y 方向和辅助平面点。</td><td>恢复测量场中的世界坐标系。</td></tr>
+        <tr><td>P4-P6</td><td>基座系 <code>{B}</code></td><td>三点定义基座参考。</td><td>当前主程序未参与求解，可作为扩展校核。</td></tr>
+        <tr><td>P7-P12</td><td>固定段 <code>{F}</code></td><td>两截面，每截面 3 个圆周点；局部 y = 500 和 1500。</td><td>三点定圆，得到两个截面圆心，恢复固定段轴线和端面。</td></tr>
+        <tr><td>P13-P18</td><td>移动段 <code>{M0}</code></td><td>两截面，每截面 3 个圆周点；局部 y = -500 和 -1500。</td><td>同上，用于恢复移动段当前位姿。</td></tr>
+      </tbody>
+    </table>
+
+    <p>生成器中注入的模拟误差为：</p>
+    <table>
+      <thead>
+        <tr><th>对象</th><th>平移误差 [dx, dy, dz]</th><th>转角误差 [rx, ry, rz]</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>移动段 <code>{M0}</code></td><td class="num">[15, -25, 12] mm</td><td class="num">[0.5, 0.0, -0.8] deg</td></tr>
+        <tr><td>固定段 <code>{F}</code></td><td class="num">[150, 0, 100] mm</td><td class="num">[1.5, 3.0, 0.5] deg</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout ok">
+      当前 <code>noise_level = 0</code>，因此数据是理想、无噪声的。用这份数据验证算法时，拟合结果应当几乎精确恢复注入的位姿误差。
+    </div>
+  </section>
+
+  <section>
+    <h2>五、坐标系拟合算法</h2>
+    <h3>1. 世界系三点拟合</h3>
+    <p>主程序使用 P1、P2、P3 构造世界坐标系：</p>
+    <pre>O_W = P2
+Y_W = normalize(P1 - P2)
+Z_W = normalize((P3 - P2) x (P1 - P2))
+X_W = normalize(Y_W x Z_W)
+T_W_fitted = [X_W, Y_W, Z_W, O_W; 0 0 0 1]</pre>
+    <p>这个构造依赖点的顺序。若 P1/P2/P3 交换，可能导致轴向反号或坐标系变成错误的手性。</p>
+
+    <h3>2. 三点求空间圆心</h3>
+    <p>固定段和移动段每个截面用 3 个圆周点求圆心。代码中的解析公式是：</p>
+    <pre>v1 = p2 - p1
+v2 = p3 - p1
+n  = v1 x v2
+C  = p1 + ((||v1||^2 v2 - ||v2||^2 v1) x n) / (2 ||n||^2)</pre>
+    <p>
+      得到近端圆心 <code>C1</code> 和远端圆心 <code>C2</code> 后，轴线方向由两圆心连线确定。
+      固定段使用 <code>Y_F = normalize(C2_F - C1_F)</code>，移动段使用 <code>Y_M = normalize(C1_M - C2_M)</code>，这是由两组靶标在局部 y 方向的布置决定的。
+    </p>
+
+    <h3>3. X/Z 轴恢复与正交化</h3>
+    <p>脚本选取截面中角度为 0 度附近的靶标点作为 X 轴方向参考，再去掉它在 Y 轴上的投影：</p>
+    <pre>X_temp = normalize(P_ref - C2)
+X      = normalize(X_temp - dot(X_temp, Y) * Y)
+Z      = X x Y</pre>
+    <p>这样可以避免截面点因微小误差不完全垂直于轴线时造成坐标轴不正交。</p>
+  </section>
+
+  <section>
+    <h2>六、测量场到设备场的空间映射</h2>
+    <p>
+      激光跟踪仪可以任意放置，因此直接测出的 <code>Targets</code> 属于测量场。程序先在测量场中拟合出 <code>T_W_fitted</code>，再用理论世界系 <code>T_W_ideal</code> 构造转换：
+    </p>
+    <pre>T_LT2Machine = T_W_ideal * inv(T_W_fitted)
+T_M0         = T_LT2Machine * T_M0_fitted
+T_F_curr     = T_LT2Machine * T_F_fitted
+Targets_Machine(i) = T_LT2Machine * Targets(i)</pre>
+    <p>
+      含义是：把所有实测位姿从“激光跟踪仪坐标”统一映射回“设备理论基准坐标”。这一步是后续 IK 能成立的前提。
+      当前数据中 P1-P3 与理论世界系完全一致，因此复算得到 <code>T_LT2Machine</code> 基本为单位变换。
+    </p>
+  </section>
+
+  <section>
+    <h2>七、对接策略与逆运动学</h2>
+    <h3>对接策略</h3>
+    <table>
+      <thead>
+        <tr><th>模式</th><th>代码行为</th><th>适用理解</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>align_mode = 1</code></td><td><code>T_Mnew = T_F_curr</code></td><td>移动段端面与固定段端面完全重合。</td></tr>
+        <tr><td><code>align_mode = 2</code></td><td>姿态取固定段，位置保留移动段当前值。</td><td>只要求姿态平行，不做端面位置对齐。</td></tr>
+        <tr><td><code>align_mode = 3</code></td><td><code>T_Mnew = T_M0 * T_manual</code></td><td>人工输入 6-DOF 调整量；当前代码使用 [150, 200, 100] mm 和 [0, 0, 0] deg。</td></tr>
+      </tbody>
+    </table>
+
+    <h3>IK 分解逻辑</h3>
+    <p>逆解将目标移动段圆柱轴线表示为：</p>
+    <pre>P_a = T_Mnew(1:3, 4)     // 目标端面圆心
+v_a = T_Mnew(1:3, 2)     // 目标圆柱轴线方向，即局部 Y 轴</pre>
+
+    <p>移动段并联机构被分解为 5 个自由度控制量：地轨基座 Y 向平移 + 4 条支链顶升高度。</p>
+    <pre>dy_cmd = T_Mnew_y - T_M0_y
+Y_cols_new(i) = Y_cols(i) + dy_cmd</pre>
+
+    <p>每条支链在自己的 Y 截面上与目标圆柱轴线相交：</p>
+    <pre>t_i      = (Y_cols_new(i) - P_a_y) / v_a_y
+X_axis_i = P_a_x + t_i * v_a_x
+Z_axis_i = P_a_z + t_i * v_a_z</pre>
+
+    <p>在 X-Z 截面中，滚筒中心到工件轴线距离等于 <code>Rw + rr</code>。若支链横向位置为 <code>X_cols(i)</code>，顶升高度为 <code>H_i</code>，则：</p>
+    <pre>(X_cols(i) - X_axis_i)^2 + (H_i - Z_axis_i)^2 = (Rw + rr)^2
+H_i = Z_axis_i - sqrt((Rw + rr)^2 - (X_cols(i) - X_axis_i)^2)</pre>
+
+    <p>
+      代码选择负号，表示滚筒中心位于工件轴线下方。若根号内为负，说明该支链在当前横向位置下已经无法接触目标圆柱，程序会报“幅度超限/脱轨”。
+    </p>
+
+    <h3>固定段 Roll 补偿</h3>
+    <pre>Delta_T_M       = T_M0 \ T_Mnew
+target_roll_M   = rad2deg(asin(Delta_T_M(1,3)))
+roll_cmd_fixed  = -target_roll_M</pre>
+    <p>这相当于从移动段相对变化中取一个滚转分量，并让固定段工装做相反方向补偿。当前人工模式没有引入旋转，所以补偿结果约为 0 度。</p>
+  </section>
+
+  <section>
+    <h2>八、当前数据复算结果</h2>
+    <h3>拟合位姿</h3>
+    <table>
+      <thead>
+        <tr><th>对象</th><th>X</th><th>Y</th><th>Z</th><th>Rx</th><th>Ry</th><th>Rz</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>W_fit</code></td><td class="num">0.000</td><td class="num">4790.000</td><td class="num">0.000</td><td class="num">-0.000</td><td class="num">0.000</td><td class="num">-0.000</td></tr>
+        <tr><td><code>M0</code></td><td class="num">15.000</td><td class="num">4765.000</td><td class="num">3217.186</td><td class="num">0.500</td><td class="num">0.000</td><td class="num">-0.800</td></tr>
+        <tr><td><code>F</code></td><td class="num">150.000</td><td class="num">5090.000</td><td class="num">3305.186</td><td class="num">1.500</td><td class="num">3.000</td><td class="num">0.500</td></tr>
+        <tr><td><code>Mnew</code></td><td class="num">167.778</td><td class="num">4962.006</td><td class="num">3318.909</td><td class="num">0.500</td><td class="num">0.000</td><td class="num">-0.800</td></tr>
+      </tbody>
+    </table>
+
+    <h3>圆心与轴线</h3>
+    <table>
+      <thead>
+        <tr><th>量</th><th>X</th><th>Y</th><th>Z</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>C1_F</code></td><td class="num">145.643</td><td class="num">5589.804</td><td class="num">3318.502</td><td>固定段近端截面圆心。</td></tr>
+        <tr><td><code>C2_F</code></td><td class="num">136.928</td><td class="num">6589.411</td><td class="num">3345.135</td><td>固定段远端截面圆心。</td></tr>
+        <tr><td><code>C1_M</code></td><td class="num">8.019</td><td class="num">4265.068</td><td class="num">3212.823</td><td>移动段近端截面圆心。</td></tr>
+        <tr><td><code>C2_M</code></td><td class="num">-5.943</td><td class="num">3265.203</td><td class="num">3204.097</td><td>移动段远端截面圆心。</td></tr>
+        <tr><td><code>P_a</code></td><td class="num">167.778</td><td class="num">4962.006</td><td class="num">3318.909</td><td>目标移动段端面圆心。</td></tr>
+        <tr><td><code>v_a</code></td><td class="num">0.014</td><td class="num">1.000</td><td class="num">0.009</td><td>目标移动段轴线方向。</td></tr>
+      </tbody>
+    </table>
+
+    <h3>运动指令</h3>
+    <table>
+      <thead>
+        <tr><th>控制量</th><th>结果</th><th>相对初始变化</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>固定段 Roll 补偿</td><td class="num">-0.000 deg</td><td>当前人工模式未引入目标旋转。</td></tr>
+        <tr><td>地轨基座平移 Y</td><td class="num">+197.006 mm</td><td>由 <code>T_Mnew_y - T_M0_y</code> 得到。</td></tr>
+        <tr><td>支链 1 顶升高度</td><td class="num">1494.306 mm</td><td class="num">-5.694 mm</td></tr>
+        <tr><td>支链 2 顶升高度</td><td class="num">1499.283 mm</td><td class="num">-0.717 mm</td></tr>
+        <tr><td>支链 3 顶升高度</td><td class="num">1706.188 mm</td><td class="num">+206.188 mm</td></tr>
+        <tr><td>支链 4 顶升高度</td><td class="num">1610.398 mm</td><td class="num">+110.398 mm</td></tr>
+      </tbody>
+    </table>
+
+    <details>
+      <summary>展开查看当前 18 个靶标点坐标</summary>
+      <div>
+        <table>
+          <thead>
+            <tr><th>点号</th><th>X</th><th>Y</th><th>Z</th><th>归属</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>P01</td><td class="num">0.000</td><td class="num">6790.000</td><td class="num">0.000</td><td>世界系</td></tr>
+            <tr><td>P02</td><td class="num">0.000</td><td class="num">4790.000</td><td class="num">0.000</td><td>世界系原点</td></tr>
+            <tr><td>P03</td><td class="num">1500.000</td><td class="num">5790.000</td><td class="num">0.000</td><td>世界系辅助点</td></tr>
+            <tr><td>P04</td><td class="num">0.000</td><td class="num">2500.000</td><td class="num">0.000</td><td>基座系</td></tr>
+            <tr><td>P05</td><td class="num">0.000</td><td class="num">0.000</td><td class="num">0.000</td><td>基座系原点</td></tr>
+            <tr><td>P06</td><td class="num">1800.000</td><td class="num">1200.000</td><td class="num">0.000</td><td>基座系辅助点</td></tr>
+            <tr><td>P07</td><td class="num">1615.774</td><td class="num">5628.040</td><td class="num">2364.427</td><td>固定段近端截面</td></tr>
+            <tr><td>P08</td><td class="num">1896.174</td><td class="num">5607.498</td><td class="num">3227.193</td><td>固定段近端截面</td></tr>
+            <tr><td>P09</td><td class="num">1707.519</td><td class="num">5582.214</td><td class="num">4114.425</td><td>固定段近端截面</td></tr>
+            <tr><td>P10</td><td class="num">1418.940</td><td class="num">6632.421</td><td class="num">2150.311</td><td>固定段远端截面</td></tr>
+            <tr><td>P11</td><td class="num">1887.459</td><td class="num">6607.105</td><td class="num">3253.825</td><td>固定段远端截面</td></tr>
+            <tr><td>P12</td><td class="num">1536.885</td><td class="num">6573.509</td><td class="num">4400.064</td><td>固定段远端截面</td></tr>
+            <tr><td>P13</td><td class="num">1596.622</td><td class="num">4249.351</td><td class="num">2471.808</td><td>移动段近端截面</td></tr>
+            <tr><td>P14</td><td class="num">1734.219</td><td class="num">4238.308</td><td class="num">3517.006</td><td>移动段近端截面</td></tr>
+            <tr><td>P15</td><td class="num">1247.456</td><td class="num">4236.944</td><td class="num">4452.183</td><td>移动段近端截面</td></tr>
+            <tr><td>P16</td><td class="num">1429.890</td><td class="num">3253.929</td><td class="num">2198.481</td><td>移动段远端截面</td></tr>
+            <tr><td>P17</td><td class="num">1746.886</td><td class="num">3240.729</td><td class="num">3203.884</td><td>移动段远端截面</td></tr>
+            <tr><td>P18</td><td class="num">1429.890</td><td class="num">3236.380</td><td class="num">4209.364</td><td>移动段远端截面</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2>九、你需要特别注意的事项</h2>
+    <div class="callout risk">
+      <strong>1. 当前算法对噪声不鲁棒。</strong>
+      每个圆截面只用 3 个点精确求圆心。如果真实激光跟踪仪数据有噪声、遮挡或离群点，建议改为多点最小二乘圆/圆柱拟合，并加入残差评估。
+    </div>
+
+    <div class="callout warn">
+      <strong>2. 三点退化没有保护。</strong>
+      <code>fitCircle3D</code> 中若三点近似共线，则 <code>norm(n)^2</code> 很小，会导致数值爆炸。世界系三点若共线，也无法稳定构造坐标系。
+    </div>
+
+    <div class="callout warn">
+      <strong>3. <code>v_a(2)</code> 接近 0 时 IK 会失效。</strong>
+      公式 <code>t_i = (Y_cols_new(i) - P_a(2)) / v_a(2)</code> 默认目标轴线有明显 Y 分量。如果目标圆柱轴线接近横向，会出现除零或高度发散。
+    </div>
+
+    <div class="callout warn">
+      <strong>4. 可达性只检查了横向根号。</strong>
+      代码用 <code>inner_val &lt; 0</code> 判断支链横向脱轨，但没有检查顶升高度上下限、地轨行程、滚筒姿态、碰撞、同步误差和速度/加速度约束。
+    </div>
+
+    <div class="callout warn">
+      <strong>5. 欧拉角显示仅供本程序约定。</strong>
+      <code>printPose</code> 用 <code>asin/atan2</code> 从矩阵取 Rx/Ry/Rz；这组角度需要和控制器采用的旋转顺序一致，不能直接假定等同于任意软件中的欧拉角定义。
+    </div>
+
+    <div class="callout">
+      <strong>6. 控制策略目前是硬编码。</strong>
+      <code>align_mode = 3</code>、人工调整量 <code>[150, 200, 100, 0, 0, 0]</code> 都写死在脚本中。若要工程使用，应改成参数输入、配置文件或 GUI 控件。
+    </div>
+
+    <div class="callout">
+      <strong>7. 中文文件内容本身是 UTF-8，部分终端可能显示乱码。</strong>
+      用按字节/UTF-8 方式复核后，CSV 导出循环在第 100 行独立存在，代码结构正常；PowerShell 默认编码显示可能把中文注释显示成乱码。
+    </div>
+  </section>
+
+  <section>
+    <h2>十、建议的工程化改进</h2>
+    <table>
+      <thead>
+        <tr><th>优先级</th><th>建议</th><th>原因</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>高</td>
+          <td>把 <code>fitCircle3D</code> 升级为多点最小二乘圆/圆柱拟合，并输出 RMS 残差。</td>
+          <td>真实测量数据通常不满足三点无噪声假设，残差可作为靶标质量和装夹异常的判据。</td>
+        </tr>
+        <tr>
+          <td>高</td>
+          <td>为 <code>v_a(2)</code>、<code>norm(n)</code>、<code>inner_val</code>、顶升高度和地轨行程加入阈值检查。</td>
+          <td>把数学不可解、机构不可达和测量退化区分开，便于现场排障。</td>
+        </tr>
+        <tr>
+          <td>中</td>
+          <td>把 <code>T_W_ideal * inv(T_W_fitted)</code> 改为更稳定的刚体变换求逆函数，或 MATLAB 右除 <code>T_W_ideal / T_W_fitted</code>。</td>
+          <td>避免显式求逆带来的数值和风格问题；SE(3) 矩阵可用 <code>R'</code> 和 <code>-R' p</code> 快速求逆。</td>
+        </tr>
+        <tr>
+          <td>中</td>
+          <td>把策略模式、人工调整量、机构限位、输入输出文件路径参数化。</td>
+          <td>减少脚本硬编码，便于批处理不同工况。</td>
+        </tr>
+        <tr>
+          <td>中</td>
+          <td>增加“无噪声回归测试”：生成器输出后，主程序应恢复注入的 M0/F 位姿，并输出可比较误差。</td>
+          <td>保证后续改算法时不会破坏坐标系方向、点号约定和 IK 符号。</td>
+        </tr>
+        <tr>
+          <td>低</td>
+          <td>把 P4-P6 基座系纳入校核或删去未使用逻辑。</td>
+          <td>当前主程序读入但不使用基座三点，容易让维护者误解其作用。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>十一、一句话总结</h2>
+    <p>
+      这套 MATLAB 程序建立了一个清晰的空间对接原型：用靶标点恢复端面位姿，用世界系标定消除激光跟踪仪摆放误差，用目标圆柱轴线与支链截面几何关系求出 4-PR 顶升高度。
+      它适合作为仿真验证和算法雏形；若要走向真实设备控制，关键补强点是测量鲁棒性、机构限位、异常诊断、参数化和控制器角度约定的一致性。
+    </p>
+  </section>
+</main>
+</body>
+</html>
