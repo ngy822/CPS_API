@@ -77,7 +77,7 @@ namespace senpec
         , store_(store)
         , solver_(solver)
         , publisher_(publisher)
-        , exportPath_("measurements.csv")
+        , exportPath_("measurements3.csv")
         , targetSizeIndex_(0)
         , uiScale_(1.0f)
         , targetFps_(60.0f)

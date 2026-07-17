@@ -1,0 +1,324 @@
+---
+API
+LTS-3000
+60584
+2000.000000	9.500000	5000.000000	1000.000000	1.000000	2048.000000
+2000.000000	9.500000	5000.000000	1000.000000	1.000000	2048.000000
+8000.000000	10.000000	50000.000000	1500.000000	0.100000	2000.000000
+8000.000000	10.000000	50000.000000	2000.000000	0.500000	2000.000000
+320.000000	6.000000	1800.000000	900.000000	0.000000	0.000000
+320.000000	6.000000	1800.000000	900.000000	0.000000	0.000000
+1.500000	0.250000	0.350000	2800.000000	0.000000	0.000000
+1.400000	0.350000	0.400000	2900.000000	0.000000	0.000000
+1.000000	0.000000	-0.050000	1000.000000
+1.000000	0.000000	0.000000	1000.000000
+0.000000	0.000000	100000.000000	60000.000000
+0.600000	0.000000
+259.290009	0.318000	0.350000	0.350000
+0.010000	0.010000	0.010000	0.010000
+0.098888	3000.000000	2000.000000
+0.000000	0.000000	0.000000	0.000000
+24500.000000	24500.000000	32000.000000	32000.000000
+0.000000	0.000000	0.010000	0.010000
+335.000000	-335.000000	245.000000	-65.000000
+180.000000	-180.000000	90.000000	-90.000000
+0.007843
+18000.000000	18000.000000	5000.000000	5000.000000
+256.000000	256.000000	256.000000	256.000000
+1.000000	0.000056	1.000000	0.000063
+1.000000	0.000635	1.000000	0.000635
+28.647900	0.337210
+1.450372	0.000000	0.000000	1.000000	-0.025421	0.409097	0.005000	-0.005882	0.028000	0.000773	0.200000
+-49.036999	160.000000
+0.000000	0.000000
+3.1649525e-04       
+0.000000	0.000000	0.000000	0.000000	33.000000	33.000000
+0.004000
+0.000000
+0.000000	1.000000	0.000000
+0.000000
+650.000000	-0.130000
+0.000000	0.000000	9.443000	-53.144001	-10.014000	-50.820999
+0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00	3.14428567886353e+00	-4.57024002075195e+00
+0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00	4.60000008344650e-01	0.00000000000000e+00
+0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00
+0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00	0.00000000000000e+00
+73
+-630.000000	-0.689186
+-620.000000	-0.379405
+-610.000000	0.180556
+-600.000000	0.276412
+-590.000000	-0.080752
+-580.000000	0.131941
+-570.000000	0.057473
+-560.000000	-0.413069
+-550.000000	-1.115658
+-540.000000	-2.371330
+-530.000000	-2.875489
+-520.000000	-3.045784
+-510.000000	-3.045790
+-500.000000	-2.949992
+-490.000000	-2.568548
+-480.000000	-2.328263
+-470.000000	-2.012242
+-460.000000	-2.213491
+-450.000000	-2.045463
+-440.000000	-1.643972
+-430.000000	-0.926186
+-420.000000	-0.635251
+-410.000000	-0.584603
+-400.000000	-0.334545
+-390.000000	-0.541084
+-380.000000	-0.774211
+-370.000000	-0.981304
+-360.000000	-2.586850
+-350.000000	-2.785326
+-340.000000	-3.017564
+-330.000000	-3.007407
+-320.000000	-3.138559
+-310.000000	-2.454114
+-300.000000	-1.654370
+-290.000000	-1.137789
+-280.000000	-0.830878
+-270.000000	-0.689186
+-260.000000	-0.379405
+-250.000000	0.035528
+-240.000000	0.006642
+-230.000000	-0.276352
+-220.000000	0.090416
+-210.000000	0.096769
+-200.000000	-0.413069
+-190.000000	-1.115658
+-180.000000	-2.371330
+-170.000000	-2.875489
+-160.000000	-3.045784
+-150.000000	-3.045790
+-140.000000	-2.949992
+-130.000000	-2.568548
+-120.000000	-2.328263
+-110.000000	-2.012242
+-100.000000	-2.213491
+-90.000000	-2.045463
+-80.000000	-1.643972
+-70.000000	-0.926186
+-60.000000	-0.635251
+-50.000000	-0.584603
+-40.000000	-0.334545
+-30.000000	-0.541084
+-20.000000	-0.774211
+-10.000000	-0.981304
+0.000000	-2.586850
+10.000000	-2.785326
+20.000000	-3.017564
+30.000000	-3.007407
+40.000000	-3.138559
+50.000000	-2.454114
+60.000000	-1.654370
+70.000000	-1.137789
+80.000000	-0.830878
+90.000000	-0.689186
+39
+-70.000298	0.108096
+-60.000301	-0.325000
+-49.999901	-0.032104
+-39.999699	-0.001370
+-30.000000	0.101048
+-20.000000	-0.026740
+-9.999980	-0.010040
+0.000066	-0.002225
+10.000000	0.068914
+20.000000	0.287034
+30.000099	0.002603
+40.000099	0.289735
+49.999901	0.285867
+59.999901	0.329067
+70.000000	0.012889
+80.000099	-0.444875
+90.000000	-0.601567
+99.999901	-0.304143
+110.000000	0.030523
+120.000000	-0.130151
+130.000000	-0.295305
+140.000000	0.062636
+150.000000	0.255022
+160.000000	0.426385
+170.000000	0.625222
+180.000000	0.769470
+190.000000	0.791634
+200.000000	1.109601
+210.000000	0.705269
+220.000000	0.644004
+230.000000	0.872366
+240.000000	0.999521
+250.000000	0.465403
+260.000000	-0.096270
+270.000000	-0.043800
+280.000000	0.118846
+290.000000	0.108096
+300.000000	-0.036274
+310.000000	-0.032104
+41
+-14522.955078	-7200.022949
+-13791.228516	-6839.922363
+-13070.507813	-6480.017090
+-12342.267578	-6119.938477
+-11619.964844	-5760.019531
+-10889.583008	-5399.957031
+-10164.529297	-5040.026855
+-9436.722656	-4679.961914
+-8713.892578	-4319.985352
+-7986.754883	-3960.008301
+-7265.182617	-3600.000977
+-6534.559570	-3239.920410
+-5809.166016	-2880.009277
+-5081.171875	-2519.981201
+-4361.431641	-2160.026367
+-3631.585938	-1799.957886
+-2910.234131	-1439.975464
+-2180.351563	-1079.969727
+-1456.205933	-720.024231
+-725.961914	-359.976471
+-6.636048	-0.000858
+725.804932	360.048584
+1447.063721	719.984314
+2179.103760	1080.024292
+2900.099121	1439.999512
+3630.024170	1800.055420
+4351.792480	2159.985107
+5079.825195	2520.008301
+5803.037109	2880.012695
+6531.901367	3240.041504
+7257.380371	3599.994873
+7983.979492	3960.045898
+8707.205078	4319.988281
+9438.750977	4680.069336
+10160.362305	5039.944336
+10891.037109	5400.040039
+11611.656250	5760.016602
+12343.528320	6120.025879
+13065.142578	6480.010254
+13792.575195	6840.033203
+14514.917969	7199.995605
+-7200.022949	7199.995605	2.016516
+#Dummy
+1
+0.000000	0.000000
+-800.000000	800.000000	10.000000
+#Dummy
+0.000000	0.000000	0.000000	0.000000	0.000000	0.000000
+0.000000	0.000000
+0.00000000	0.00000000	0.00000000	0.00000000
+0.00000000	0.00000000	0.00000000	0.00000000
+0.00000000	0.00000000	0.00000000	0.00000000
+0.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00
+0.000000	0.000000
+0.000000
+0.016529	0.802310	2.07036737265298e-06	4.077393
+0.000000	0.000000	0.000000	0.000000
+19.239759	17.109520	21.511000	0.003000	0.003000	0.003000
+[BodyTBB] 29.726400	29.726400	29.824100	0.003000	0.003000	0.003000
+[qvcslope] -0.000007	-0.000007
+[thermal] 1.000000	0.000000	40.000000	0.000000	0.000000	0.000000
+This Parameter File is an initial template parameters file.
+* Comment Lines *
+[Line  1] File Marking (Do not change!)
+[Line  2] Licensee
+[Line  3] Model
+[Line  4] Serial Number
+[Line  5] 0:Servo Base AzKp         1:Servo Base AzKi          2:Servo Base AzKd
+3:Servo Base AzAntiWdup   4:Servo Base AzKiLimit     5:Servo Base AzLimKp
+[Line  6] 6:Servo Base ElKp         7:Servo Base ElKi          8:Servo Base ElKd
+9:Servo Base ElAntiWdup   10:Servo Base ElKiLimit    11:Servo Base ElLimKp
+[Line  7] 12:Servo Target AzKp      13:Servo Target AzKi       14:Servo Target AzKd
+15:Servo Target AzAntiWdup16:Servo Target AzKiLimit  17:Servo Target AzLimKp
+[Line  8] 18:Servo Target ElKp      19:Servo Target ElKi       20:Servo Target ElKd
+21:Servo Target ElAntiWdup22:Servo Target ElKiLimit  23:Servo Target ElLimKp
+[Line  9] 24:Track Base AzKp        25:Track Base AzKi         26:Track Base AzKd
+27:Track Base AzAntiWdup  28:Track Base AzKiLimit    29:Track Base AzLimKp
+[Line 10] 30:Track Base ElKp        31:Track Base ElKi         32:Track Base ElKd
+33:Track Base ElAntiWdup  34:Track Base ElKiLimit    35:Track Base ElLimKp
+[Line 11] 36:Track Target AzKp      37:Track Target AzKi       38:Track Target AzKd
+39:Track Target AzAntiWdup40:Track Target AzKiLimit  41:Track Target AzLimKp
+[Line 12] 42:Track Target ElKp      43:Track Target ElKi       44:Track Target ElKd
+45:Track Target ElAntiWdup46:Track Target ElKiLimit  47:Track Target ElLimKp
+[Line 13] 48:Servo AzVelKp          49:Servo AzVelKi           50:Servo AzVelKd            51:Servo AzVelAntiWdup
+[Line 14] 52:Servo ElVelKp          53:Servo ElVelKi           54:Servo ElVelKd            55:Servo ElVelAntiWdup
+[Line 15] 56:Base AzDamperKd        57:Base ElDamperKd         58:Target AzDamperKd        59:Target ElDamperKd
+[Line 16] 60:Servo AzExpoFilter     61:Servo ElExpoFilter
+[Line 17] 62:Base AZ Home           63:Base EL Home            64:Base AZ Homing Inc       65:Base EL Homing Inc
+[Line 18] 66:Base AZ In-Position    67:Base EL In-Position     68:Target AZ In-Position    69:Target EL In-Position
+[Line 19] 70:Distance:T-to-V        71:Base Laser Threshold    72:Target Laser Threshold
+[Line 20] 73:Base Photo X Set Point 74:Base Photo Y Set Point  75:Target Photo X Set Point 76:Target Photo Y Set Point
+[Line 21] 77:Max. BaseX Intensity   78:Max. BaseY Intensity    79:Max. TargetX Intensity   80:Max. TargetY Intensity
+[Line 22] 81:Target AZ Home         82:Target EL Home          83:Target AZ Homing Inc     84:Target EL Homing Inc
+[Line 23] 85:Base AZ +Soft-Limit    86:Base AZ -Soft-Limit     87:Base EL +Soft-Limit      88:Base EL -Soft-Limit
+[Line 24] 89:Target AZ +Soft-Limit  90:Target AZ -Soft-Limit   91:Target EL +Soft-Limit    92:Target EL -Soft-Limit
+[Line 25] 93:Squareness Error
+[Line 26] 94:Base AZ Encoder Lines  95:Base EL Encoder Lines   96:Target AZ Encoder Lines  97:Target EL Encoder Lines
+[Line 27] 98:Base AZ Encoder Sub    99:Base EL Encoder Sub     100:Target AZ Encoder Sub   101:Target EL Encoder Sub
+[Line 28] 102:Base Photo Scale 0    103:Base Photo Scale 1     104:Base Photo Scale 2      105:Base Photo Scale 3
+[Line 29] 106:Target Photo Scale 0  107:Target Photo Scale 1   108:Target Photo Scale 2    109:Target Photo Scale 3
+[Line 30] 110:Roll Scale            111:Roll Norm
+[Line 31] 112:Laser Offset          113:Tilt-aa Offset         114:Tilt-bb Offset
+115:Calibration Warning(1) T-Off                     116:Laser Beam T-Offset
+117:Laser Beam Z-Offset                              118:Calibration Warning(2) T-BD
+119:T-Axis Laser Beam Deviation                      120:Calibration Warning(3) T-SQR
+123:Z-Axis Laser Beam Deviation                      124:Calibration Warning(4) T-DIST
+[Line 32] 121:Bird Bath EL                  122:Bird Bath Dist
+[Line 33] 126:Gimbal Material Coefficient   127:Gimbal Material Temperature
+[Line 34] Laser half ramda wave length
+[Line 35] Eccentricity offsets(AZ-X, AZ-Y, EL-X, EL-Y, Radius-AZ, Radius-EL)
+[Line 36] 125:QVC Points Data Repetability Tolerance
+[Line 37] Calibration Point Temperature
+[Line 38] K0, K1, K2
+[Line 39] Calibration Point Pressure
+[Line 40] K0, K1
+[Line 41] First 2 numbers in this line are ADM distance compensation break point; Number 3 to number 6 are offset angles for 0.5 inch SMR 
+and 7/8 inch SMR bird bath 
+(1) break point #1 (2) break point #2	(3) 0.5 inch BB AZ offset (4) 0.5 inch BB EL offset (5) 7/8 inch BB AZ offset (6) 7/8 inch BB EL offset
+[Line 42] First 4 numbers in this line are ADM distance compensation coefficients; Number 5 and number 6 are distance offset for 0.5 inch
+and 7/8 inch SMR bird bath
+(1) a0	(2) a1 (3) a2 (4) a3	(5) Distance offset for 0.5 inch bird bath (6) Distance offset for 7/8 inch bird bath
+[line 43] First 4 numbers in this line are ADM distance compensation coefficients; Number 5 is the virtual level offset; Number 6 is reserved
+(1) a0	(2) a1 (3) a2 (4) a3	(5) Virtual level angle offset (6) Reserved
+[line 44] First 4 numbers in this line are ADM distance compensation coefficients; Number 5 and Number 6 are reserved
+(1) a0	(2) a1 (3) a2 (4) a3	(5) Reserved (6) Reserved
+[Line 45] ADM rotation compensation coefficients
+(1) a0	(2) a1 (3) a2 (4) a3	(5) a4	(6) a5
+Azimuth Encoder Compensation Data Table
+Elevation Encoder Compensation Data Table
+Level X
+x		Number of Data Points for the Level X
+x	x(0)       Level sensor data in bits   y(0) Level sensor data in arcsec
+x	x(1)       Level sensor data in bits   y(1) Level sensor data in arcsec
+.
+.
+.
+x	x(n)       Level sensor data in bits   y(n) Level sensor data in arcsec
+x   x    x     Level negative limit        Level positive limit      Level Bits/ArcSec
+x              Level X Identification
+Level Y
+x		Number of Data Points for the Level Y
+x	x(0)       Level sensor data in bits   y(0) Level sensor data in arcsec
+x	x(1)       Level sensor data in bits   y(1) Level sensor data in arcsec
+.
+.
+.
+x	x(n)       Level sensor data in bits   y(n) Level sensor data in arcsec
+x   x    x     Level negative limit        Level positive limit      Level Bits/ArcSec
+x              Level Y Identification
+Default Calibration Factors(Dist(T-V), Squareness, T-Offset, Z-Offset, T-Beam Dev, Z-Beam Dev)
+[Line	59]Adm intensity section1 criteria, section2
+[Line	60]Adm intensity compensation coefficients 1
+[Line	61]Adm intensity compensation coefficients 2
+[Line	62]Adm intensity compensation coefficients 3
+[Line	63]Adm distance compensation coefficients
+[Line	64]Adm intensity center AZ offset, EL offset
+[Line	65]Adm reading target offset
+[Line	66]User calibration coefficients A and B
+[Line	67]User specification for accuracy
+67]User specification for accuracy
+specification for accuracy
+for accuracy
+accuracy
+
